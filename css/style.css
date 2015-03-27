@@ -69,8 +69,26 @@ body {
 }
 
 #player-container.minimized {
-	top: calc(100% - 90px);
+	top: calc(100% - 60px);
 }
+
+	#player-container.minimized .sc-scrubber {
+		height: 3px;
+	}
+
+	#player-container.minimized .sc-info h4 {
+	  font-size: 12px;
+	  top: 12px;
+	}
+
+	#player-container.minimized .sc-info h3 {
+	  top: 30px;
+	  font-size: 18px;
+	}
+
+	#player-container.minimized #sound-icon, #player-container.minimized #minimize-icon {
+	  padding: 15px 30px;
+	}
 
 #bg-overlay {
 	position: fixed;
@@ -96,7 +114,12 @@ body {
 	text-align: center;
 	position: absolute;
 	top: 0;
+	left: 50%;
 	width: 100%;
+	width: calc(100% - 130px);
+	transform: 			translateX(-50%);
+	-webkit-transform: 	translateX(-50%);
+	-moz-transform: 	translateX(-50%);
 }
 
 .sc-info h4 {
@@ -232,13 +255,17 @@ span.sc-duration {
 	max-height: 100%;
 	max-width: 100%;
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+	height: 0px;
+  	transition:           all 500ms ease;
+	-webkit-transition:   all 500ms ease;
+	-moz-transition:      all 500ms ease;
 }
 
-	.bgwidth { 
+	.sc-player li.active img.bgwidth { 
 		width: 100%;
 		height: auto; 
 	}
-	.bgheight { 
+	.sc-player li.active img.bgheight { 
 		height: 100%; 
 		width: auto;
 	}
@@ -267,7 +294,7 @@ span.sc-duration {
 	transform: 			translateX(-50%);
 	-webkit-transform: 	translateX(-50%);
 	-moz-transform: 	translateX(-50%);
-	border: 2px solid rgba(255,255,255,0.3);
+	border: 2px solid rgba(255,255,255,1);
 	text-align: center;
 	font-family: 'Jaapokki', serif;
 	z-index: -2;
@@ -275,7 +302,7 @@ span.sc-duration {
 }
 
 .hip-box.above {
-	border: 2px solid rgba(255,255,255,0.2);
+	border: 2px solid rgba(255,255,255,0.5);
 	z-index: 1;
 }
 
@@ -377,6 +404,9 @@ span.sc-duration {
 	width: 40%;
 	padding: 0 15px;
 	opacity: 0.4;
+	transition:           all 200ms ease;
+	-webkit-transition:   all 200ms ease;
+	-moz-transition:      all 200ms ease;
 }
 
 .number-container li.my-score {
@@ -387,6 +417,11 @@ span.sc-duration {
   height: 100%;
   width: 100%;
   display: inline-block;
+  transform: scale(0.9);
+}
+
+.number-container li.my-score span {
+	transform: scale(1);;
 }
 
 .number-container li:nth-child(2) span { background: url('../images/numbers/1.svg'); }
