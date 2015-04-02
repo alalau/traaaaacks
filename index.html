@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<title>Jockey</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
-
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 
@@ -13,99 +11,17 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="android-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
 	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
 	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src='http://modernizr.com/downloads/modernizr-latest.js'></script>
-
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/soundcloud.player.api.js"></script>
 	<script type="text/javascript" src="js/sc-player.js"></script>
   	<script type="text/javascript" src='js/jquery-scrollable.js'></script>
 	<script type="text/javascript" src='js/jquery.adaptive-backgrounds.js'></script>
-
-	<script type="text/javascript">
-
-		jQuery(function($) {
-	      if (!Modernizr.touch) { // if not a smartphone
-	        debiki.Utterscroll.enable();
-	      }
-	    });
-
-		function resizeArtwork() {
-			var containerWidth = $(".sc-player li.active").width();
-			var containerHeight = $(".sc-player li.active").height();
-			if (containerWidth > containerHeight) {
-				$(".sc-player li.active img").addClass("bgheight");
-				$(".sc-player li.active img").removeClass("bgwidth");
-			} else {
-				$(".sc-player li.active img").addClass("bgwidth");
-				$(".sc-player li.active img").removeClass("bgheight");
-			}
-		}
-
-		function getImgColor(callback) {
-			$(".sc-player li.active img").attr("data-adaptive-bg", "1");
-			$(".sc-player li.active img").attr("crossOrigin", "");
-			callback();
-		}
-
-		function getColor() {
-			var defaults = {
-				selector: '[data-adaptive-bg="1"]',
-				parent:   '#player-container',
-			};
-			$.adaptiveBackground.run(defaults);
-			if ($('#player-container').css('background-color;') == 'rgb(0, 0, 0)') {
-				$.adaptiveBackground.run(defaults);
-			}
-		}
-
-		function centerNumbers(myClass, duration) {
-			var scrollMiddle = $(myClass).offset().left - ($(window).width()/2) + ($(myClass).width()/2) + 15;
-			$('#draggable').animate({
-		        scrollLeft: scrollMiddle,
-		        opacity: 1
-		    }, duration, "easeOutCubic");
-		}
-
-		function checkNumbers() {
-			$('#numbers li').each(function() {
-		        var centerDistance = $(this).offset().left - ($(window).width()/2) + ($(this).width()/2);
-		        var listWidth = $(this).width()/2 + 15;
-		     	if (centerDistance < listWidth && centerDistance > -listWidth) {
-		     		$(this).addClass('my-score');
-		     	} else {
-		     		$(this).removeClass('my-score');
-		     	}
-			});
-		}
-
-		window.onload = function () {
-			getImgColor(function() {
-		     	getColor();
-		     });
-			centerNumbers(".number-container li.middle", 1000);
-
-			resizeArtwork();
-
-			$('#minimize-icon').click(function() {
-				$('#player-container').toggleClass('minimized');
-			});	
-
-			$('#draggable').scroll(function() {
-				checkNumbers();
-			});
-		}
-
-		$(window).resize(function() {
-			resizeArtwork();
-			checkNumbers();
-		});
-
-	</script>
+	<script type="text/javascript" src='js/player.js'></script>
 
 </head>
 
@@ -126,7 +42,7 @@
 
 		<div class="sc-player">
 			<!-- <a href="https://soundcloud.com/tycho/a-walk" class="sc-player"></a> -->
-			<a href="https://soundcloud.com/vanilla/erykah-badu-on-on-vanilla-remix" class="sc-player"></a>
+			<a href="https://soundcloud.com/octobersveryown/drake-girls-love-beyonce-feat" class="sc-player"></a>
 		</div>
 
 		<div class="hip-box">
@@ -137,7 +53,7 @@
 		<div class="number-container">
 			<div id="draggable">
 				<ol id="numbers">
-					<li value='empty' id="first-empty"></li>
+					<li value='empty' id="first-empty" class="number-spacer"></li>
 					<li value='1' ><span></span></li>						<!-- 1 -->
 					<li value='2'><span></span></li>						<!-- 2 -->
 					<li value='3'><span></span></li>						<!-- 3 -->
@@ -148,12 +64,10 @@
 					<li value='8'><span></span></li>						<!-- 8 -->
 					<li value='9'><span></span></li>						<!-- 9 -->
 					<li value='10'><span></span></li>						<!-- 10 -->
-					<li value='empty' id="last-empty"></li>
+					<li value='empty' id="last-empty" class="number-spacer"></li>
 				</ol>
 			</div>
 		</div>
-
-		<div class="hip-box above"></div>
 	</div>
 
 	<script src='js/debiki-utterscroll.js'></script>

@@ -98,7 +98,6 @@ body {
 	pointer-events:none;
 	background-color: rgba(0,0,0,0.2);
 	background-image: url('../images/concrete-wall-3.png');
-	z-index: -10;
 }
 
 .top-stripe {
@@ -202,7 +201,6 @@ a.sc-info-toggle {
 	height: 100%;
 	top: 0;
 	position: absolute;
-	z-index: -1;
 }
 
 .sc-played {
@@ -297,7 +295,7 @@ span.sc-duration {
 	border: 2px solid rgba(255,255,255,1);
 	text-align: center;
 	font-family: 'Jaapokki', serif;
-	z-index: -2;
+	z-index: 1;
 	pointer-events:none;
 }
 
@@ -445,10 +443,11 @@ span.sc-duration {
 	background-repeat: no-repeat;
 }
 
+
 .number-container li:first-child, .number-container li:last-child {
-	width: 50%;
 	max-width: 100%;
 }
+
 
 #sound-icon, #minimize-icon {
 	position: absolute;
