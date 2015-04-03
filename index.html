@@ -26,49 +26,153 @@
 </head>
 
 <body>
-	<!-- <div class="scroll-hack"></div> -->
-	<div class="top-stripe brand-color"></div>
+	<nav>
+		<ul>
+			<li id="djBtn" class="selected">DJs</li>
+			<li id="songsBtn">SONGS</li>
+			<li id="playingBtn">PLAYING</li>
+		</ul>
+		<div id="underline"></div>
+	</nav>
 
-	<div id="player-container">
-		<div id="bg-overlay">
-			<span></span>
-		</div>
-		<div id="sound-icon">
-			<span></span>
-		</div>
-		<div id="minimize-icon">
-			<span></span>
-		</div>
-
-		<div class="sc-player">
-			<!-- <a href="https://soundcloud.com/tycho/a-walk" class="sc-player"></a> -->
-			<a href="https://soundcloud.com/octobersveryown/drake-girls-love-beyonce-feat" class="sc-player"></a>
-		</div>
-
-		<div class="hip-box">
-			<div class="score-lable top">Score</div>
-			<div class="score-lable bottom">/10</div>
-		</div>
-
-		<div class="number-container">
-			<div id="draggable">
-				<ol id="numbers">
-					<li value='empty' id="first-empty" class="number-spacer"></li>
-					<li value='1' ><span></span></li>						<!-- 1 -->
-					<li value='2'><span></span></li>						<!-- 2 -->
-					<li value='3'><span></span></li>						<!-- 3 -->
-					<li value='4'><span></span></li>						<!-- 4 -->
-					<li value='5' class="middle"><span></span></li>		<!-- 5 -->
-					<li value='6'><span></span></li>						<!-- 6 -->
-					<li value='7'><span></span></li>						<!-- 7 -->
-					<li value='8'><span></span></li>						<!-- 8 -->
-					<li value='9'><span></span></li>						<!-- 9 -->
-					<li value='10'><span></span></li>						<!-- 10 -->
-					<li value='empty' id="last-empty" class="number-spacer"></li>
-				</ol>
+	<div class="parent-container" id="main-parent">
+		<div class="scroll-container" id="scrollContainer">
+			<div id="people-container" class="three-column">
+				<div id="list-container">
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>1</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</div>
+
+			<div id="playlist-container" class="three-column">
+				<div id="list-container">
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+						<li>2</li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="player-container" class="three-column">
+				<div id="bg-overlay">
+					<span></span>
+				</div>
+				<div id="sound-icon">
+					<span></span>
+				</div>
+
+				<div class="sc-player">
+					<a href="https://soundcloud.com/vanilla/erykah-badu-on-on-vanilla-remix" class="sc-player"></a>
+				</div>
+
+				<div class="hip-box">
+					<div class="score-lable top">Score</div>
+					<div class="score-lable bottom">/10</div>
+				</div>
+				
+				<div class="number-container">
+					<div id="draggable">
+						<ol id="numbers">
+							<li value='empty' id="first-empty" class="number-spacer"></li>
+							<li value='1' ><span></span></li>						<!-- 1 -->
+							<li value='2'><span></span></li>						<!-- 2 -->
+							<li value='3'><span></span></li>						<!-- 3 -->
+							<li value='4'><span></span></li>						<!-- 4 -->
+							<li value='5' class="middle" id="middle-number"><span></span></li>			<!-- 5 -->
+							<li value='6'><span></span></li>						<!-- 6 -->
+							<li value='7'><span></span></li>						<!-- 7 -->
+							<li value='8'><span></span></li>						<!-- 8 -->
+							<li value='9'><span></span></li>						<!-- 9 -->
+							<li value='10'><span></span></li>						<!-- 10 -->
+							<li value='empty' id="last-empty" class="number-spacer"></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div> <!-- END scroll-container -->
+	</div>	<!-- END parent-container -->
 
 	<script src='js/debiki-utterscroll.js'></script>
 </body>

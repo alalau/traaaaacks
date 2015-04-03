@@ -1,8 +1,13 @@
+/*
+
 jQuery(function($) {
   if (!Modernizr.touch) { // if not a smartphone
-    debiki.Utterscroll.enable();
+    debiki.Utterscroll.enable({
+      scrollstoppers: 'nav, #djBtn, #songsBtn, #playingBtn' });
   }
 });
+
+*/
 
 function resizeArtwork() {
 	var containerWidth = $(".sc-player li.active").width();
@@ -38,12 +43,20 @@ function getColor() {
 	}
 }
 
+/*
 function centerNumbers(myClass, duration) {
-	var scrollMiddle = $(myClass).offset().left - ($(window).width()/2) + ($(myClass).width()/2) + 15;
+	var scrollMiddle = $(myClass).offset().left - ($('#player-container').width()/2) + ($(myClass).width()/2) + 15;
 	$('#draggable').animate({
         scrollLeft: scrollMiddle,
         opacity: 1
     }, duration, "easeOutCubic");
+}
+*/
+
+function centerNumbers(myClass, duration) {
+	$('#draggable').animate({
+	   scrollLeft: $(myClass).offset().left
+	}, duration, "easeOutCubic");
 }
 
 function checkNumbers() {
@@ -68,7 +81,7 @@ window.onload = function () {
 	getImgColor(function() {
      	getColor();
      });
-	centerNumbers(".number-container li.middle", 1000);
+	centerNumbers("#middle-number", 1000);
 
 	resizeArtwork();
 	resizeSpacers();
@@ -80,6 +93,49 @@ window.onload = function () {
 	$('#draggable').scroll(function() {
 		checkNumbers();
 	});
+
+	$('#djBtn').click(function() {
+		$('#main-parent').animate({
+		   scrollLeft: 0
+		}, 350, "easeOutCubic");
+	});		
+
+	$('#songsBtn').click(function() {
+		$('#main-parent').animate({
+		   scrollLeft: $("#main-parent").width()
+		}, 350, "easeOutCubic");
+	});	
+
+	$('#playingBtn').click(function() {
+		$('#main-parent').animate({
+		   scrollLeft: $("#main-parent").width()*2
+		}, 350, "easeOutCubic");
+	});
+
+	$('#main-parent').scroll(function() {
+		var scrollPos = $("#scrollContainer").offset().left;
+		var scrollPercent = -(scrollPos / $("#scrollContainer").width());
+		var newMargin = $(window).width() * scrollPercent;
+		$("#underline").css( 'left', newMargin);
+		if (scrollPercent >= 0 && scrollPercent < 0.3) {
+			$("#djBtn").addClass('selected');
+			$("#songsBtn").removeClass('selected');
+			$("#playingBtn").removeClass('selected');
+			$("nav").removeClass("player");
+		} 
+		else if (scrollPercent >= 0.3 && scrollPercent < 0.6) {
+			$("#djBtn").removeClass('selected');
+			$("#songsBtn").addClass('selected');
+			$("#playingBtn").removeClass('selected');
+			$("nav").removeClass("player");
+		} 
+		else {
+			$("#djBtn").removeClass('selected');
+			$("#songsBtn").removeClass('selected');
+			$("#playingBtn").addClass('selected');
+			$("nav").addClass("player");
+		}
+	});
 }
 
 $(window).resize(function() {
@@ -87,3 +143,9 @@ $(window).resize(function() {
 	checkNumbers();
 	resizeSpacers();
 });
+
+/* ---------------------------
+
+		Click events
+
+------------------------------ */

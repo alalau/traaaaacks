@@ -1,3 +1,8 @@
+/*-------------------------------------------------------
+
+		Fonts
+
+-------------------------------------------------------*/
 
 @font-face {
     font-family: 'leitura_displayswashes';
@@ -45,6 +50,35 @@
 	font-style: normal;
 }
 
+/*-------------------------------------------------------
+
+		Scrollbars
+
+-------------------------------------------------------*/
+
+	.parent-container::-webkit-scrollbar {
+	    height: 0px;
+	    padding: 20px;
+	    background: rgba(0,0,0,0);
+	}
+
+	.parent-container::-webkit-scrollbar-track {
+
+	}
+
+	.parent-container::-webkit-scrollbar-thumb {
+	    background: rgba(0,0,0,0.01);
+	}
+
+	.parent-container::-webkit-scrollbar-thumb:hover {
+	    background: #cb9ac7;
+	}
+
+/*-------------------------------------------------------
+
+		Structure
+
+-------------------------------------------------------*/
 
 
 .brand-color {
@@ -55,43 +89,138 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'din-regularregular', sans-serif;
+	overflow: hidden;
 }
+
+.parent-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.scroll-container {
+	position: absolute;
+	width: 300%;
+	height: 100%;
+}
+
+.three-column {
+	width: 33.333%;
+	float: left;
+	position: relative;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+#people-container, #playlist-container {
+	background: #fff;
+	box-shadow: 8px 0px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#list-container {
+  top: 0;
+  padding-top: 50px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/*-------------------------------------------------------
+
+		PLAYER
+
+-------------------------------------------------------*/
+
+nav {
+	position: fixed;
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	background: white;
+	transition: 		all 250ms ease;
+	-webkit-transition: all 250ms ease;
+	-moz-transition: 	all 250ms ease;
+}
+
+	nav ul {
+		padding: 0;
+		margin: 0;
+		height: 50px;
+		border-bottom: 2px solid rgba(0,0,0,0.08);
+	}
+
+		nav ul li {
+			width: 33.33%;
+			display: inline-block;
+			float: left;
+			text-align: center;
+			padding: 20px;
+			padding-bottom: 10px;
+			box-sizing: 		border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: 	border-box;
+			cursor: pointer;
+			font-weight: bold;
+			font-size: 15px;
+			opacity: 0.5;
+			transition: 		all 250ms ease;
+			-webkit-transition: all 250ms ease;
+			-moz-transition: 	all 250ms ease;
+		}
+
+		nav ul li.selected {
+			color: #0CBF8C;
+			opacity: 1;
+		}
+
+nav.player {
+	background: rgba(255,255,255,0);
+	border: none;
+}
+
+nav.player ul li {
+	color: #fff !important;
+}
+
+#underline {
+	width: 33%;
+	height: 2px;
+	background: #06D6A0;
+	margin-top: -2px;
+	position: absolute;
+	transition: 		all 250ms ease;
+	-webkit-transition: all 250ms ease;
+	-moz-transition: 	all 250ms ease;
+}
+
+nav.player #underline {
+	background: #fff;
+}
+
+/*-------------------------------------------------------
+
+		PLAYER
+
+-------------------------------------------------------*/
 
 #player-container {
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	background: #fff;
-	top: 0;
-	transition:           all 500ms ease;
-	-webkit-transition:   all 500ms ease;
-	-moz-transition:      all 500ms ease;
+  position: relative;
+  height: 100%;
+  width: 33.333%;
+  background: #fff;
+  top: 0;
+  left: 0;
+  transition: all 500ms ease;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
 }
-
-#player-container.minimized {
-	top: calc(100% - 60px);
-}
-
-	#player-container.minimized .sc-scrubber {
-		height: 3px;
-	}
-
-	#player-container.minimized .sc-info h4 {
-	  font-size: 12px;
-	  top: 12px;
-	}
-
-	#player-container.minimized .sc-info h3 {
-	  top: 30px;
-	  font-size: 18px;
-	}
-
-	#player-container.minimized #sound-icon, #player-container.minimized #minimize-icon {
-	  padding: 15px 30px;
-	}
 
 #bg-overlay {
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	background: #333;
@@ -112,44 +241,52 @@ body {
 .sc-info {
 	text-align: center;
 	position: absolute;
-	top: 0;
+	top: 70px;
 	left: 50%;
 	width: 100%;
-	width: calc(100% - 130px);
-	transform: 			translateX(-50%);
-	-webkit-transform: 	translateX(-50%);
-	-moz-transform: 	translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	height: 50px;
+	overflow: hidden;
+	pointer-events: none;
+	color: white;
 }
+	.sc-info a {
+		text-decoration: none;
+		color: white;
+	}
 
-.sc-info h4 {
-	font-size: 15px;
-	opacity: 0.7;
-	position: absolute;
-	top: 20px;
-	margin: 0;
-	width: 100%;
-	color: rgba(0,0,0,0);
-	margin-left: -10px;
-}
+	.sc-info h4 {
+		font-size: 12px;
+		opacity: 0.7;
+		position: absolute;
+		top: 0;
+		margin: 0;
+		width: 100%;
+		color: rgba(0,0,0,0);
+		margin-left: -10px;
+	}
 
-.sc-info h3 {
-	position: absolute;
-	top: 45px;
-	margin: 0;
-	width: 100%;
-	font-family: 'MinionPro-Semibold', serif;
-	font-size: 22px;
-	letter-spacing: 1px;
-	font-weight: 300;
-}
+	.sc-info h3 {
+		position: absolute;
+		top: 20px;
+		margin: 0;
+		width: 100%;
+		font-size: 20px;
+		font-weight: 300;
+		font-family: 'MinionPro-Semibold', serif;
+		letter-spacing: 1px;
+		white-space: nowrap;
+	}
 
-.sc-info p {
-	display: none;
-}
+	.sc-info p {
+		display: none;
+	}
 
-.sc-info-close {
-	display: none;
-}
+	.sc-info-close {
+		display: none;
+	}
 
 ol.sc-artwork-list {
 	padding: 0;
@@ -172,7 +309,8 @@ a.sc-info-toggle {
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	height: 10px;
+	height: 5px;
+	left: 0;
 }
 
 #player-container.minimized .sc-time-indicators {
@@ -204,7 +342,8 @@ a.sc-info-toggle {
 }
 
 .sc-played {
-	background: rgba(255,255,255,0.8);
+	background: #06D6A0;
+	opacity: 0.8;
 }
 
 .sc-buffer {
@@ -219,24 +358,26 @@ span.sc-position {
 	position: absolute;
 	left: 30px;
 	bottom: 30px;
+	display: none;
 }
 
 span.sc-duration {
 	position: absolute;
 	bottom: 30px;
 	right: 30px;
+	display: none;
 }
 
 .sc-player li.active {
 	padding: 0 20px;
-	position: fixed;
+	position: absolute;
 	height: 50%;
 	height: calc(100% - 300px);
 	left: 0;
 	width: 100%;
 	box-sizing: border-box;
-	margin-top: 150px;
-	margin-bottom: 150px;
+	margin-top: 185px;
+	margin-bottom: 115px;
 	text-align: center;
 }
 
@@ -268,16 +409,6 @@ span.sc-duration {
 		width: auto;
 	}
 
-.sc-info {
-	pointer-events: none;
-	color: white;
-}
-
-	.sc-info a {
-		text-decoration: none;
-		color: white;
-	}
-
 .hip-box {
 	position: absolute;
 	top: 0;
@@ -285,23 +416,18 @@ span.sc-duration {
 	min-width: 112px;
 	width: 40%;
 	height: 80%;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 140px;
+	margin-bottom: 60px;
 	height: calc(100% - 200px);
 	left: 50%;
-	transform: 			translateX(-50%);
-	-webkit-transform: 	translateX(-50%);
-	-moz-transform: 	translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
 	border: 2px solid rgba(255,255,255,1);
 	text-align: center;
 	font-family: 'Jaapokki', serif;
 	z-index: 1;
-	pointer-events:none;
-}
-
-.hip-box.above {
-	border: 2px solid rgba(255,255,255,0.5);
-	z-index: 1;
+	pointer-events: none;
 }
 
 .score-lable {
@@ -332,12 +458,10 @@ span.sc-duration {
 }
 
 .sc-controls {
-	position: fixed;
-	bottom: 30px;
-	left: 50%;
-  	transform: 			translateX(-50%);
-	-webkit-transform: 	translateX(-50%);
-	-moz-transform: 	translateX(-50%);
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  display: none;
 }
 
 #player-container.minimized .sc-controls {
@@ -360,12 +484,12 @@ span.sc-duration {
 }
 
 .number-container {
-	margin-top: 150px;
-	margin-bottom: 150px;
-	height: calc(100% - 300px);
-	position: fixed;
-	overflow: hidden;
-	width: 100%;
+  margin-top: 185px;
+  margin-bottom: 115px;
+  height: calc(100% - 300px);
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
 }
 
 #draggable {
@@ -378,7 +502,6 @@ span.sc-duration {
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
-    opacity: 0;
 }
 
 #draggable:active {
@@ -449,21 +572,14 @@ span.sc-duration {
 }
 
 
-#sound-icon, #minimize-icon {
+#sound-icon {
 	position: absolute;
-	top: 0;
+	bottom: 0;
+	right: 0;
 	height: 30px;
 	width: 30px;
-	padding: 30px;
+	padding: 40px;
 	cursor: pointer;
-}
-
-#sound-icon {
-	right: 0;
-}
-
-#minize-icon {
-	left: 0;
 }
 
 #sound-icon span {
