@@ -1,4 +1,4 @@
-/*
+
 
 jQuery(function($) {
   if (!Modernizr.touch) { // if not a smartphone
@@ -7,7 +7,7 @@ jQuery(function($) {
   }
 });
 
-*/
+
 
 function resizeArtwork() {
 	var containerWidth = $(".sc-player li.active").width();
