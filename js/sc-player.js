@@ -10,6 +10,26 @@
 *   The link will be automatically replaced by the HTML based player
 */
 (function($) {
+
+  //for getting color
+  function getImgColor(callback) {
+    $(".sc-player li.active img").attr("data-adaptive-bg", "1");
+    $(".sc-player li.active img").attr("crossOrigin", "");
+    callback();
+  }
+
+  function getColor() {
+    var defaults = {
+      selector: '[data-adaptive-bg="1"]',
+      parent:   '#player-container',
+    };
+    $.adaptiveBackground.run(defaults);
+    if ($('#player-container').css('background-color;') == 'rgb(0, 0, 0)') {
+      $.adaptiveBackground.run(defaults);
+    }
+  }
+
+
   // Convert milliseconds into Hours (h), Minutes (m), and Seconds (s)
   var timecode = function(ms) {
     var hms = function(ms) {
@@ -392,6 +412,16 @@
         // stop the audio
         audioEngine.stop();
         $player.trigger('onPlayerTrackFinish');
+
+
+        $('#draggable').animate({
+          scrollLeft: 0
+        }, 200, "easeOutCubic");
+
+        getImgColor(function() {
+          getColor();
+        });
+
       },
       onSeek = function(player, relative) {
         audioEngine.seek(relative);
@@ -603,7 +633,7 @@
     onDomReady  : function() {
       $('a.sc-player, div.sc-player').scPlayer();
     },
-    autoPlay: true,
+    autoPlay: false,
     continuePlayback: true,
     randomize: false,
     loadArtworks: 5,
@@ -617,11 +647,24 @@
   //--------------------------------------------------------
 
   // toggling play/pause
-  $(document).on('click','a.sc-play, a.sc-pause', function(event) {
+  
+  $(document).on('click','#hip-box, a.sc-play', function(event) {
+    console.log("play god dammit!");
     var $list = $(this).closest('.sc-player').find('ol.sc-trackslist');
     // simulate the click in the tracklist
     $list.find('li.active').click();
+    $('#hip-box').removeClass('stopped');
+    $('#numberContainer').removeClass('offscreen');
     return false;
+  });
+
+
+
+  $(document).on('click','#hip-box', function(event) {
+    console.log("play god dammit!");
+    $('a.sc-play').trigger('click');
+    $('#hip-box').removeClass('stopped');
+    $('#numberContainer').removeClass('offscreen');
   });
 
   // displaying the info panel in the player

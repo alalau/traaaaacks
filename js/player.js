@@ -3,11 +3,9 @@
 jQuery(function($) {
   if (!Modernizr.touch) { // if not a smartphone
     debiki.Utterscroll.enable({
-      scrollstoppers: 'nav, #djBtn, #songsBtn, #playingBtn' });
+      scrollstoppers: 'nav, #djBtn, #songsBtn, #playingBtn, #hip-box' });
   }
 });
-
-
 
 function resizeArtwork() {
 	var containerWidth = $(".sc-player li.active").width();
@@ -19,11 +17,6 @@ function resizeArtwork() {
 		$(".sc-player li.active img").addClass("bgwidth");
 		$(".sc-player li.active img").removeClass("bgheight");
 	}
-}
-
-function resizeSpacers() {
-	var newWidth = ($(window).width / 2 - $("#middle").width()/2) + 5000;
-	$('.number-container li:first-child').css( 'width', newWidth );
 }
 
 function getImgColor(callback) {
@@ -43,20 +36,13 @@ function getColor() {
 	}
 }
 
-/*
-function centerNumbers(myClass, duration) {
-	var scrollMiddle = $(myClass).offset().left - ($('#player-container').width()/2) + ($(myClass).width()/2) + 15;
+function centerNumbers() {
+	var spacerSize = ($(window).width()/2) - ($("#hip-box-hidden").width()/2) - 15;
+	$("#first-empty").css( 'width', spacerSize);
+	$("#last-empty").css( 'width', spacerSize);
 	$('#draggable').animate({
-        scrollLeft: scrollMiddle,
-        opacity: 1
-    }, duration, "easeOutCubic");
-}
-*/
-
-function centerNumbers(myClass, duration) {
-	$('#draggable').animate({
-	   scrollLeft: $(myClass).offset().left
-	}, duration, "easeOutCubic");
+	   scrollLeft: 0
+	}, 200, "easeOutCubic");
 }
 
 function checkNumbers() {
@@ -71,6 +57,31 @@ function checkNumbers() {
 	});
 }
 
+function animateNav() {
+    var scrollPos = $("#scrollContainer").offset().left;
+	var scrollPercent = -(scrollPos / $("#scrollContainer").width());
+	var newMargin = $(window).width() * scrollPercent;
+	$("#underline").css( 'left', newMargin);
+	if (scrollPercent >= 0 && scrollPercent < 0.3) {
+		$("#djBtn").addClass('selected');
+		$("#songsBtn").removeClass('selected');
+		$("#playingBtn").removeClass('selected');
+		$("nav").removeClass("player");
+	} 
+	else if (scrollPercent >= 0.3 && scrollPercent < 0.6) {
+		$("#djBtn").removeClass('selected');
+		$("#songsBtn").addClass('selected');
+		$("#playingBtn").removeClass('selected');
+		$("nav").removeClass("player");
+	} 
+	else {
+		$("#djBtn").removeClass('selected');
+		$("#songsBtn").removeClass('selected');
+		$("#playingBtn").addClass('selected');
+		$("nav").addClass("player");
+	}
+}
+
 /* ---------------------------
 
 		RUN
@@ -80,12 +91,9 @@ function checkNumbers() {
 window.onload = function () {
 	getImgColor(function() {
      	getColor();
-     });
-	centerNumbers("#middle-number", 1000);
-
+    });
+	centerNumbers();
 	resizeArtwork();
-	resizeSpacers();
-
 	$('#minimize-icon').click(function() {
 		$('#player-container').toggleClass('minimized');
 	});	
@@ -95,53 +103,46 @@ window.onload = function () {
 	});
 
 	$('#djBtn').click(function() {
-		$('#main-parent').animate({
-		   scrollLeft: 0
-		}, 350, "easeOutCubic");
+		$("#scroll-container").removeClass("player");
+		$("#scroll-container").addClass("people");
+		$("#scroll-container").removeClass("songs");
+		$("nav").removeClass("player");
+		$("nav").addClass("people");
+		$("nav").removeClass("songs");
+		$("#fab").removeClass("player");
+		$("#fab").addClass("people");
+		$("#fab").removeClass("songs");
 	});		
 
 	$('#songsBtn').click(function() {
-		$('#main-parent').animate({
-		   scrollLeft: $("#main-parent").width()
-		}, 350, "easeOutCubic");
+		$("#scroll-container").removeClass("player");
+		$("#scroll-container").removeClass("people");
+		$("#scroll-container").addClass("songs");
+		$("nav").removeClass("player");
+		$("nav").removeClass("people");
+		$("nav").addClass("songs");
+		$("#fab").removeClass("player");
+		$("#fab").removeClass("people");
+		$("#fab").addClass("songs");
 	});	
 
 	$('#playingBtn').click(function() {
-		$('#main-parent').animate({
-		   scrollLeft: $("#main-parent").width()*2
-		}, 350, "easeOutCubic");
-	});
-
-	$('#main-parent').scroll(function() {
-		var scrollPos = $("#scrollContainer").offset().left;
-		var scrollPercent = -(scrollPos / $("#scrollContainer").width());
-		var newMargin = $(window).width() * scrollPercent;
-		$("#underline").css( 'left', newMargin);
-		if (scrollPercent >= 0 && scrollPercent < 0.3) {
-			$("#djBtn").addClass('selected');
-			$("#songsBtn").removeClass('selected');
-			$("#playingBtn").removeClass('selected');
-			$("nav").removeClass("player");
-		} 
-		else if (scrollPercent >= 0.3 && scrollPercent < 0.6) {
-			$("#djBtn").removeClass('selected');
-			$("#songsBtn").addClass('selected');
-			$("#playingBtn").removeClass('selected');
-			$("nav").removeClass("player");
-		} 
-		else {
-			$("#djBtn").removeClass('selected');
-			$("#songsBtn").removeClass('selected');
-			$("#playingBtn").addClass('selected');
-			$("nav").addClass("player");
-		}
+		$("#scroll-container").addClass("player");
+		$("#scroll-container").removeClass("people");
+		$("#scroll-container").removeClass("songs");
+		$("nav").addClass("player");
+		$("nav").removeClass("people");
+		$("nav").removeClass("songs");
+		$("#fab").addClass("player");
+		$("#fab").removeClass("people");
+		$("#fab").removeClass("songs");
 	});
 }
 
 $(window).resize(function() {
 	resizeArtwork();
+	centerNumbers();
 	checkNumbers();
-	resizeSpacers();
 });
 
 /* ---------------------------

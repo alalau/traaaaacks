@@ -3,20 +3,21 @@
 <head>
 	<title>Jockey</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
-
-	<!-- Behavioral Meta Data -->
 	<meta name="theme-color" content="#06D6A0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="android-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
-	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+
+	<link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
-	<script src='http://modernizr.com/downloads/modernizr-latest.js'></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
+
+	<script src='http://modernizr.com/downloads/modernizr-latest.js'></script>
 	<script type="text/javascript" src="js/soundcloud.player.api.js"></script>
 	<script type="text/javascript" src="js/sc-player.js"></script>
   	<script type="text/javascript" src='js/jquery-scrollable.js'></script>
@@ -26,7 +27,7 @@
 </head>
 
 <body>
-	<nav>
+	<nav class="player">
 		<ul>
 			<li id="djBtn" class="selected">DJs</li>
 			<li id="songsBtn">SONGS</li>
@@ -36,102 +37,17 @@
 	</nav>
 
 	<div class="parent-container" id="main-parent">
-		<div class="scroll-container" id="scrollContainer">
+
+		<a id="fab" class="fab-btn player"></a>
+
+		<div id="scroll-container" class="player">
 			<div id="people-container" class="three-column">
 				<div id="list-container">
-					<ul>
-						<li>1</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>1</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-					</ul>
 				</div>
 			</div>
 
 			<div id="playlist-container" class="three-column">
 				<div id="list-container">
-					<ul>
-						<li>1</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-						<li>2</li>
-					</ul>
 				</div>
 			</div>
 
@@ -144,23 +60,26 @@
 				</div>
 
 				<div class="sc-player">
+					<a href="https://soundcloud.com/massappealrecs/05-all-my-life" class="sc-player"></a>
+					<a href="https://soundcloud.com/foolsgoldrecs/treasure-fingers-bosco-names-2" class="sc-player"></a>
 					<a href="https://soundcloud.com/vanilla/erykah-badu-on-on-vanilla-remix" class="sc-player"></a>
 				</div>
 
-				<div class="hip-box">
+				<div id="hip-box-hidden"></div>
+				<div id="hip-box" class="stopped">
 					<div class="score-lable top">Score</div>
 					<div class="score-lable bottom">/10</div>
 				</div>
 				
-				<div class="number-container">
-					<div id="draggable">
+				<div class="number-container offscreen" id="numberContainer">
+					<div id="draggable" class="offscreen">
 						<ol id="numbers">
 							<li value='empty' id="first-empty" class="number-spacer"></li>
-							<li value='1' ><span></span></li>						<!-- 1 -->
+							<li value='1' class="my-score"><span></span></li>						<!-- 1 -->
 							<li value='2'><span></span></li>						<!-- 2 -->
 							<li value='3'><span></span></li>						<!-- 3 -->
 							<li value='4'><span></span></li>						<!-- 4 -->
-							<li value='5' class="middle" id="middle-number"><span></span></li>			<!-- 5 -->
+							<li value='5' id="middle-number"><span></span></li>						<!-- 5 -->
 							<li value='6'><span></span></li>						<!-- 6 -->
 							<li value='7'><span></span></li>						<!-- 7 -->
 							<li value='8'><span></span></li>						<!-- 8 -->
